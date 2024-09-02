@@ -115,7 +115,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Configure EKS Cluster
-        if: ${{ inputs.eks-service == 'true' }}
+        if: ${{ inputs.eks-service == true }}
         run: |
               aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name ${{inputs.eks-cluster}} || echo "Warning: Failed to update kubeconfig for EKS cluster ${{inputs.eks-cluster}}"
 
