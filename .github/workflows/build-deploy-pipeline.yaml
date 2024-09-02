@@ -68,11 +68,10 @@ jobs:
           TAG : ${{ github.sha }}
         run: |
           mvn package
-          echo "docker building image"
-          docker build -t ${{inputs.account-id}}.dkr.ecr.eu-north-1.amazonaws.com/${{inputs.main-repo}}:${TAG} .
-          echo "pushing docker image"
-          docker push ${{inputs.account-id}}.dkr.ecr.eu-north-1.amazonaws.com/${{inputs.main-repo}}:${TAG}
-          echo "docker image pushed to ecr successfully"
+          docker build -t digitify-application .
+          docker tag digitify-application:latest 099199746132.dkr.ecr.eu-north-1.amazonaws.com/digitify-application:$TAG
+          docker push 099199746132.dkr.ecr.eu-north-1.amazonaws.com/digitify-application:$TAG
+
           echo "image_tag=${TAG}" >> $GITHUB_OUTPUT
 
       - name: Update Image Tag in Helm Value File
