@@ -1,0 +1,30 @@
+name: Reuseable workflow
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: "Environment to run the workflow"
+        type: string
+        required: true
+      main-repo:
+        description: main repository to be used
+        required: true
+        type: string
+
+jobs:
+  workflow-test:
+    name: Reuseable workflow Testing 
+    runs-on: ubuntu-latest
+    env:
+      ENVIRONMENT: ${{inputs.environment}}
+      BUILDING_BLOCK_NAME: ${{inputs.main-repo}}
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check Environment Variable for ${{inputs.environment}}
+        run: echo "This is ${{inputs.environment}} environment"
+
+      - name: Check main repo name for ${{inputs.main-repo}}
+        run: echo "This is ${{inputs.main-repo}} repo"
