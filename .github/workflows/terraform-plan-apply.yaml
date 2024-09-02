@@ -10,8 +10,17 @@ on:
       main-repo:
         description: main repository to be used
         required: true
-        type: string 
-
+        type: string
+      eks-service:
+        description: Determine if EKS service should be configured
+        required: true
+        type: boolean
+        default: false
+      eks-cluster:
+        description: EKS Cluster configuration
+        required: true
+        type: string
+        
 jobs:
   plan:
     name: Validate and plan changes on ${{inputs.environment}} environment
