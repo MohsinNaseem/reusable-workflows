@@ -69,8 +69,8 @@ jobs:
         run: |
           mvn package
           docker build -t ${{inputs.main-repo}} .
-          docker tag ${{inputs.main-repo}}:latest 099199746132.dkr.ecr.eu-north-1.amazonaws.com/${{inputs.main-repo}}:$TAG
-          docker push 099199746132.dkr.ecr.eu-north-1.amazonaws.com/${{inputs.main-repo}}:$TAG
+          docker tag ${{inputs.main-repo}}:latest ${{inputs.account-id}}.dkr.ecr.eu-north-1.amazonaws.com/${{inputs.main-repo}}:$TAG
+          docker push ${{inputs.account-id}}.dkr.ecr.eu-north-1.amazonaws.com/${{inputs.main-repo}}:$TAG
 
           echo "image_tag=${TAG}" >> $GITHUB_OUTPUT
 
