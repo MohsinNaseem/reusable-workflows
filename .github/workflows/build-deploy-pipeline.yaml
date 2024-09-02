@@ -68,9 +68,9 @@ jobs:
           TAG : ${{ github.sha }}
         run: |
           mvn package
-          docker build -t digitify-application .
-          docker tag digitify-application:latest 099199746132.dkr.ecr.eu-north-1.amazonaws.com/digitify-application:$TAG
-          docker push 099199746132.dkr.ecr.eu-north-1.amazonaws.com/digitify-application:$TAG
+          docker build -t ${{inputs.main-repo}} .
+          docker tag ${{inputs.main-repo}}:latest 099199746132.dkr.ecr.eu-north-1.amazonaws.com/${{inputs.main-repo}}:$TAG
+          docker push 099199746132.dkr.ecr.eu-north-1.amazonaws.com/${{inputs.main-repo}}:$TAG
 
           echo "image_tag=${TAG}" >> $GITHUB_OUTPUT
 
