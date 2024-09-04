@@ -112,7 +112,7 @@ jobs:
          chmod +x ./deploy.sh
          ./deploy.sh
 
-  deploy_production:
+  deploy-production:
     needs: [unit-testing,build-artifact,deploy-staging]
     runs-on: ubuntu-latest
     environment: production
